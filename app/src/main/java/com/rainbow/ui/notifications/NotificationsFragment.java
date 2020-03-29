@@ -1,7 +1,11 @@
 package com.rainbow.ui.notifications;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -42,8 +46,36 @@ public class NotificationsFragment extends Fragment {
             @Override
             public void onClick(View v) {
            new Update().execute();
+                try {
+                    Thread.sleep(2000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                getDialog();
             }
         });
+    }
+    private void getDialog(){
+        SharedPreferences version = getActivity().getSharedPreferences("version", Context.MODE_PRIVATE);
+        String data = version.getString("data", "");
+        AlertDialog.Builder alert=new AlertDialog.Builder(getActivity())
+                .setTitle("发现新版本！")
+                .setMessage(data)
+                .setCancelable(false)
+                .setPositiveButton("下载", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent intent=new Intent(Intent.ACTION_VIEW);
+                        intent.setData(Uri.parse("http://47.115.23.162/rainbow.apk"));
+                        getActivity().startActivity(intent);
+                    }
+                })
+                .setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                    }
+                });
+        alert.show();
     }
 
 }
