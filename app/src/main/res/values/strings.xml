@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">彩虹翻译</string>
+    <string name="title_home">翻译</string>
+    <string name="title_dashboard">记录</string>
+    <string name="title_notifications">关于</string>
+    <string name="buttomtranslation">翻译</string>
+    <string name="edittext">请输入要翻译的内容...</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="detailbuttom">返回</string>
+</resources>
